@@ -4,22 +4,21 @@ declare(strict_types=1);
 
 namespace App\Http\Middleware;
 
-use App\Contracts\FacebookDetector;
+use App\Contracts\CrawlerDetector;
 use App\ValueObjects\Http\Ip;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class Cloaker
+class GoogleCloaker
 {
 
     /**
      * @param  FacebookDetector  $detector
      */
     public function __construct(
-        private readonly FacebookDetector $detector
-    )
-    {
+        private readonly CrawlerDetector $detector
+    ) {
     }
 
     /**
@@ -32,9 +31,9 @@ class Cloaker
         $ip = Ip::make($request->ip());
 
         if ($this->detector->match($ip)) {
-            return $next($request);
+            return to_route('x9');
         }
 
-        return redirect('https://bet368.casino/#/HO/');
+        return $next($request);
     }
 }

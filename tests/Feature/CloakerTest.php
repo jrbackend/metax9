@@ -8,12 +8,20 @@ use Tests\TestCase;
 class CloakerTest extends TestCase
 {
 
-    public function test_if_is_not_redirected(): void
+    public function test_if_is_redirected_facebook(): void
     {
         $ip = '157.240.240.1';
         $this->withServerVariables(['REMOTE_ADDR' => $ip])
             ->get(route('home.show'))
-            ->assertStatus(200);
+            ->assertStatus(302);
+    }
+
+    public function test_if_is_not_redirected_google(): void
+    {
+        $ip = '74.125.148.17';
+        $this->withServerVariables(['REMOTE_ADDR' => $ip])
+            ->get(route('home.show'))
+            ->assertStatus(302);
     }
 
     public function test_if_redirected(): void
@@ -23,4 +31,6 @@ class CloakerTest extends TestCase
             ->get(route('home.show'))
             ->assertRedirect('https://bet368.casino/#/HO/');
     }
+
+
 }

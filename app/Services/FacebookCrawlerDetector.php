@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use App\Contracts\FacebookDetector;
+use App\Contracts\CrawlerDetector;
 use App\ValueObjects\Http\Ip;
 use Symfony\Component\HttpFoundation\IpUtils;
 
-final readonly class FacebookCrawlerDetector implements FacebookDetector
+final readonly class FacebookCrawlerDetector implements CrawlerDetector
 {
     /**
      * @param  list<int, string>  $ranges
@@ -17,7 +17,6 @@ final readonly class FacebookCrawlerDetector implements FacebookDetector
         private array $ranges
     ) {
     }
-
 
     /**
      * @param  Ip  $ip

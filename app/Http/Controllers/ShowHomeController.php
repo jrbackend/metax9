@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\View as ViewRender;
+
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class ShowHomeController extends Controller
 {
-    public function __invoke(Request $request): View
+    public function __invoke(Request $request): RedirectResponse
     {
-        return ViewRender::make('welcome');
+        return redirect('https://bet368.casino/#/HO/');
     }
 }
