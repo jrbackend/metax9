@@ -32,5 +32,4 @@ class CloakerTest extends TestCase
             ->assertRedirect('https://bet368.casino/#/HO/');
     }
 
-
 }
