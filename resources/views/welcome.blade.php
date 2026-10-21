@@ -1,243 +1,146 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <title>Forma Untada — Receitas de bolo caseiro</title>
-    <meta name="description" content="Receitas de bolo caseiro testadas, com ingredientes simples, tempo de forno e dicas para dar certo.">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Forma Untada — Receitas de bolo caseiro">
-    <meta property="og:description" content="Receitas de bolo caseiro testadas, com ingredientes simples, tempo de forno e dicas para dar certo.">
-    <meta property="og:locale" content="pt_BR">
-    <meta name="referrer" content="no-referrer">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%82%3C/text%3E%3C/svg%3E">
+    <title>Touchline Notes – A football blog</title>
     <style>
         :root{
-            --bg:#fde9ef; --cocoa:#3a1d19; --berry:#c2185b; --pistachio:#cfe4bd; --butter:#ffe08a;
-            --card:#fffafc; --muted:#6e4a4a; --line:#f0c5d3;
-            --display:"Arial Rounded MT Bold","Nunito","Varela Round",ui-rounded,system-ui,sans-serif;
-            --body:Georgia,"Iowan Old Style","Palatino Linotype",serif;
-            --ui:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
             box-sizing:border-box;
-            padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+            padding-top:env(safe-area-inset-top,0px);
+            padding-bottom:env(safe-area-inset-bottom,0px);
+            --bg:#f3f6ef;--surface:#ffffff;--ink:#14231a;--muted:#55645a;--line:#d5ddd0;--pitch:#1f6b3a;--chalk:#e9f1e3;--accent:#e0a526;
         }
         @media (prefers-color-scheme:dark){
-            :root:not([data-theme="light"]){
-                --bg:#2a1620; --cocoa:#fbe9ee; --berry:#ff7aa8; --pistachio:#35503a; --butter:#6b5516;
-                --card:#391f2b; --muted:#d8b3bf; --line:#5a3345;
-            }
+            :root:not([data-theme="light"]){--bg:#0f1a13;--surface:#16251b;--ink:#eaf2e6;--muted:#a3b3a7;--line:#2a3d30;--pitch:#4fae72;--chalk:#1b2d21;--accent:#f0bb44}
         }
-        html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
-        *,*::before,*::after{box-sizing:inherit}
-        body{margin:0;background:var(--bg);color:var(--cocoa);font-family:var(--body);font-size:1.1rem;line-height:1.7}
+        :root[data-theme="dark"]{--bg:#0f1a13;--surface:#16251b;--ink:#eaf2e6;--muted:#a3b3a7;--line:#2a3d30;--pitch:#4fae72;--chalk:#1b2d21;--accent:#f0bb44}
+        html{scroll-padding-top:env(safe-area-inset-top,0px)}
+        *{box-sizing:border-box}
+        body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 Georgia,"Times New Roman",serif}
         a{color:inherit}
-        :focus-visible{outline:3px solid var(--berry);outline-offset:3px}
-        .wrap{max-width:1060px;margin:0 auto;padding:0 1.25rem}
-
-        header.site{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;padding:1.1rem 0}
-        .brand{font-family:var(--display);font-size:1.6rem;text-decoration:none;color:var(--berry)}
-        nav{display:flex;gap:1.1rem;font-family:var(--ui);font-size:.95rem;flex-wrap:wrap}
-        nav a{text-decoration:none;padding:.2rem 0;border-bottom:2px solid transparent}
-        nav a:hover{border-bottom-color:var(--berry)}
-
-        /* Hero com bolo desenhado */
-        .hero{display:grid;gap:1.5rem;align-items:center;grid-template-columns:1fr;padding:1.5rem 0 3rem}
-        @media(min-width:820px){.hero{grid-template-columns:1.15fr .85fr}}
-        .hero h1{font-family:var(--display);font-size:clamp(2.2rem,6vw,3.9rem);line-height:1.05;margin:0 0 1rem;font-weight:400;letter-spacing:-.01em}
-        .hero p{margin:0 0 1.4rem;max-width:52ch;color:var(--muted);font-size:1.2rem}
-        .btn{display:inline-block;background:var(--berry);color:#fff;font-family:var(--ui);font-weight:700;padding:.8rem 1.3rem;border-radius:999px;text-decoration:none}
-        .btn:hover{filter:brightness(1.08)}
-        .btn.alt{background:transparent;color:var(--cocoa);border:2px solid var(--cocoa);margin-left:.5rem}
-        .cake{width:100%;max-width:380px;justify-self:center;height:auto}
-
-        /* Categorias */
-        .chips{display:flex;flex-wrap:wrap;gap:.6rem;margin:0 0 3rem;padding:0;list-style:none;font-family:var(--ui)}
-        .chips a{display:block;padding:.45rem 1rem;border-radius:999px;background:var(--card);border:1px solid var(--line);text-decoration:none;font-size:.95rem}
-        .chips a:hover{background:var(--butter)}
-
-        h2.sec{font-family:var(--display);font-weight:400;font-size:2rem;margin:0 0 1.25rem}
-
-        /* Cards de receita */
-        .recipes{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));margin-bottom:3.5rem}
-        .rcard{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
-        .thumb{height:130px;display:grid;place-items:center;font-size:3.4rem}
-        .rcard:nth-child(1) .thumb{background:var(--butter)}
-        .rcard:nth-child(2) .thumb{background:var(--pistachio)}
-        .rcard:nth-child(3) .thumb{background:#ffc9d8}
-        .rcard:nth-child(4) .thumb{background:#e6d3c1}
-        @media (prefers-color-scheme:dark){.rcard:nth-child(3) .thumb{background:#6a2d45}.rcard:nth-child(4) .thumb{background:#4d3a2d}}
-        .rbody{padding:1.1rem 1.2rem 1.3rem}
-        .rbody h3{font-family:var(--display);font-weight:400;font-size:1.3rem;line-height:1.2;margin:0 0 .4rem}
-        .rbody p{margin:0 0 .7rem;font-size:1rem;color:var(--muted);line-height:1.55}
-        .facts{font-family:var(--ui);font-size:.85rem;display:flex;gap:.9rem;margin:0;padding:0;list-style:none;color:var(--cocoa)}
-        .facts li::before{content:"";}
-
-        /* Receita em destaque */
-        .feature{background:var(--card);border:2px dashed var(--berry);border-radius:20px;padding:clamp(1.25rem,4vw,2.5rem);margin-bottom:3.5rem}
-        .feature h2{font-family:var(--display);font-weight:400;font-size:clamp(1.7rem,4vw,2.4rem);margin:0 0 .4rem}
-        .feature .sub{font-family:var(--ui);color:var(--muted);margin:0 0 1.5rem}
-        .cols{display:grid;gap:2rem;grid-template-columns:1fr}
-        @media(min-width:760px){.cols{grid-template-columns:1fr 1.3fr}}
-        .cols h3{font-family:var(--display);font-weight:400;font-size:1.25rem;margin:0 0 .6rem}
-        .ing{list-style:none;margin:0 0 1.5rem;padding:0;font-family:var(--ui);font-size:1rem}
-        .ing li{padding:.2rem 0}
-        .ing label{display:flex;gap:.6rem;align-items:flex-start;cursor:pointer}
-        .ing input{margin-top:.35rem;accent-color:var(--berry)}
-        .ing input:checked+span{text-decoration:line-through;opacity:.55}
-        .steps{margin:0;padding-left:1.3rem}
-        .steps li{margin-bottom:.7rem}
-        .tip{background:var(--butter);color:#3a1d19;border-radius:12px;padding:.9rem 1.1rem;font-family:var(--ui);font-size:.95rem;margin-top:1rem}
-
-        /* Dicas */
-        .tips{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));margin-bottom:3.5rem}
-        .tips div{padding:1.1rem 1.2rem;border-radius:14px;background:var(--pistachio);font-size:1rem;line-height:1.55}
-        .tips b{display:block;font-family:var(--display);font-weight:400;font-size:1.15rem;margin-bottom:.25rem}
-        .tips div:nth-child(even){background:var(--butter)}
-        .tips div{color:var(--cocoa)}
-        @media (prefers-color-scheme:dark){.tips div{color:#fbe9ee}}
-
-        footer{border-top:2px solid var(--line);padding:1.75rem 0 2.5rem;font-family:var(--ui);font-size:.9rem;color:var(--muted)}
-        footer h4{font-family:var(--display);font-weight:400;font-size:1.15rem;color:var(--cocoa);margin:0 0 .4rem}
-        @media (prefers-reduced-motion:no-preference){
-            .cake .candle{animation:flick 1.6s ease-in-out infinite;transform-origin:50% 100%;transform-box:fill-box}
-            @keyframes flick{50%{transform:scale(1.15,.9)}}
-        }
+        .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+        header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:22px 0;border-bottom:2px solid var(--ink)}
+        .logo{font:800 1.5rem/1 "Trebuchet MS",Verdana,sans-serif;text-decoration:none;letter-spacing:-.02em}
+        nav{display:flex;gap:18px;flex-wrap:wrap;font:600 .95rem "Trebuchet MS",Verdana,sans-serif}
+        nav a{text-decoration:none;color:var(--muted)}
+        nav a:hover,nav a:focus-visible{color:var(--pitch);text-decoration:underline}
+        a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+        .hero{padding:56px 0 44px;display:grid;gap:32px;grid-template-columns:1.4fr 1fr;align-items:center}
+        .hero h1{font:800 clamp(2.2rem,6vw,4rem)/1.02 "Trebuchet MS",Verdana,sans-serif;letter-spacing:-.03em;margin:0 0 16px}
+        .hero p{color:var(--muted);max-width:52ch;margin:0 0 22px}
+        .btn{display:inline-block;background:var(--pitch);color:#fff;padding:12px 22px;border-radius:4px;font:700 .95rem "Trebuchet MS",Verdana,sans-serif;text-decoration:none}
+        .btn:hover{filter:brightness(1.1)}
+        .pitch{width:100%;height:auto;display:block}
+        .pitch *{vector-effect:non-scaling-stroke}
+        h2{font:800 1.4rem "Trebuchet MS",Verdana,sans-serif;margin:0 0 18px}
+        .feature{background:var(--surface);border:1px solid var(--line);padding:28px;margin-bottom:44px;display:grid;gap:8px;border-left:8px solid var(--accent)}
+        .feature h3{font:800 1.8rem/1.15 "Trebuchet MS",Verdana,sans-serif;margin:0}
+        .meta{font:.85rem "Trebuchet MS",Verdana,sans-serif;color:var(--muted)}
+        .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:48px}
+        .post{background:var(--surface);border:1px solid var(--line);padding:20px;display:flex;flex-direction:column;gap:8px}
+        .post h3{font:700 1.15rem/1.25 "Trebuchet MS",Verdana,sans-serif;margin:0}
+        .post p{margin:0;color:var(--muted);font-size:.95rem}
+        .tag{font:700 .78rem "Trebuchet MS",Verdana,sans-serif;color:var(--pitch)}
+        .topics{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:48px}
+        .topics a{background:var(--chalk);border:1px solid var(--line);padding:8px 16px;border-radius:99px;text-decoration:none;font:600 .92rem "Trebuchet MS",Verdana,sans-serif}
+        .topics a:hover{border-color:var(--pitch)}
+        .news{background:var(--pitch);color:#fff;padding:32px;margin-bottom:48px;display:grid;gap:14px}
+        .news h2{margin:0}
+        .news p{margin:0;opacity:.92}
+        .news form,.news .row{display:flex;gap:10px;flex-wrap:wrap}
+        .news input{flex:1;min-width:200px;padding:12px;border:0;border-radius:4px;font:1rem Georgia,serif}
+        .news button{background:var(--accent);color:#14231a;border:0;border-radius:4px;padding:12px 22px;font:700 .95rem "Trebuchet MS",Verdana,sans-serif;cursor:pointer}
+        .small{font-size:.8rem!important;opacity:.8!important}
+        footer{border-top:2px solid var(--ink);padding:26px 0 40px;color:var(--muted);font:.88rem/1.6 "Trebuchet MS",Verdana,sans-serif}
+        footer p{margin:0 0 8px;max-width:75ch}
+        @media (max-width:760px){.hero{grid-template-columns:1fr;padding-top:36px}.grid{grid-template-columns:1fr}.feature{padding:20px}}
     </style>
 </head>
 <body>
 <div class="wrap">
-
-    <header class="site">
-        <a class="brand" href="#topo">🎂 Forma Untada</a>
-        <nav aria-label="Principal">
-            <a href="#receitas">Receitas</a>
-            <a href="#destaque">Receita do dia</a>
-            <a href="#dicas">Dicas</a>
-            <a href="#privacidade">Privacidade</a>
+    <header>
+        <a class="logo" href="#top">Touchline Notes</a>
+        <nav aria-label="Main">
+            <a href="#latest">Latest</a>
+            <a href="#topics">Topics</a>
+            <a href="#newsletter">Newsletter</a>
+            <a href="#about">About</a>
         </nav>
     </header>
 
-    <main id="topo">
-        <section class="hero" aria-labelledby="titulo">
+    <main id="top">
+        <section class="hero">
             <div>
-                <h1 id="titulo">Bolo caseiro que cresce, desmancha e dá certo.</h1>
-                <p>Receitas com ingredientes de despensa, medidas em xícaras e colheres, e o tempo de forno anotado. Sem enrolação antes de chegar na massa.</p>
-                <a class="btn" href="#destaque">Ver a receita do dia</a>
-                <a class="btn alt" href="#receitas">Todas as receitas</a>
+                <h1>Football, explained one match at a time.</h1>
+                <p>Tactics, history, training ideas and stories from the world’s most-loved sport. Written for anyone who enjoys the game, from first-time viewers to lifelong supporters.</p>
+                <a class="btn" href="#latest">Read the latest</a>
             </div>
-            <svg class="cake" viewBox="0 0 300 300" role="img" aria-label="Desenho de um bolo de três camadas com vela acesa">
-                <ellipse cx="150" cy="266" rx="130" ry="16" fill="#c2185b" opacity=".25"/>
-                <rect x="40" y="190" width="220" height="70" rx="14" fill="#7a3b2a"/>
-                <rect x="62" y="130" width="176" height="62" rx="14" fill="#f7a8c4"/>
-                <rect x="86" y="78" width="128" height="54" rx="14" fill="#ffe08a"/>
-                <path d="M62 150c14 0 14 14 28 14s14-14 28-14 14 14 28 14 14-14 28-14 14 14 28 14 14-14 28-14v-20H62z" fill="#fffafc"/>
-                <path d="M40 206c18 0 18 16 36 16s18-16 36-16 18 16 36 16 18-16 36-16 18 16 36 16 18-16 40-16v-16H40z" fill="#fffafc"/>
-                <rect x="143" y="44" width="14" height="36" rx="4" fill="#cfe4bd"/>
-                <path class="candle" d="M150 18c10 12 10 20 0 26-10-6-10-14 0-26z" fill="#ff8a3d"/>
-                <g fill="#c2185b"><circle cx="110" cy="105" r="4"/><circle cx="150" cy="100" r="4"/><circle cx="190" cy="108" r="4"/><circle cx="100" cy="165" r="4"/><circle cx="200" cy="168" r="4"/></g>
-                <g fill="#cfe4bd"><circle cx="128" cy="96" r="3.5"/><circle cx="172" cy="94" r="3.5"/><circle cx="125" cy="160" r="3.5"/><circle cx="176" cy="158" r="3.5"/></g>
+            <svg class="pitch" viewBox="0 0 300 200" role="img" aria-label="Simple illustration of a football pitch">
+                <rect x="4" y="4" width="292" height="192" rx="6" fill="var(--pitch)" opacity=".9"/>
+                <g fill="none" stroke="#fff" stroke-width="2" opacity=".85">
+                    <rect x="14" y="14" width="272" height="172"/>
+                    <line x1="150" y1="14" x2="150" y2="186"/>
+                    <circle cx="150" cy="100" r="28"/>
+                    <rect x="14" y="58" width="42" height="84"/>
+                    <rect x="244" y="58" width="42" height="84"/>
+                </g>
+                <circle cx="150" cy="100" r="4" fill="#fff"/>
             </svg>
         </section>
 
-        <ul class="chips" aria-label="Categorias">
-            <li><a href="#receitas">Bolos simples</a></li>
-            <li><a href="#receitas">Com cobertura</a></li>
-            <li><a href="#receitas">De liquidificador</a></li>
-            <li><a href="#receitas">Para o café da tarde</a></li>
-            <li><a href="#receitas">Sem glúten</a></li>
-        </ul>
+        <section id="latest" aria-labelledby="l-h">
+            <h2 id="l-h">Featured story</h2>
+            <article class="feature">
+                <span class="tag">Tactics</span>
+                <h3><a href="#" style="text-decoration:none">How a back three changes the shape of a game</a></h3>
+                <p>A plain-language look at wing-backs, spare defenders and the space between the lines, with simple diagrams anyone can follow.</p>
+                <span class="meta">8 min read · Updated this week</span>
+            </article>
 
-        <section id="receitas" aria-labelledby="h-rec">
-            <h2 class="sec" id="h-rec">Receitas para fazer hoje</h2>
-            <div class="recipes">
-                <article class="rcard">
-                    <div class="thumb" aria-hidden="true">🥕</div>
-                    <div class="rbody">
-                        <h3>Bolo de cenoura com cobertura de chocolate</h3>
-                        <p>Massa fofinha batida no liquidificador e cobertura que fica brilhante.</p>
-                        <ul class="facts"><li>⏱ 1h</li><li>🍰 12 fatias</li><li>Fácil</li></ul>
-                    </div>
-                </article>
-                <article class="rcard">
-                    <div class="thumb" aria-hidden="true">🌽</div>
-                    <div class="rbody">
-                        <h3>Bolo de fubá cremoso</h3>
-                        <p>Úmido, com cheiro de café coado e sabor de casa de avó.</p>
-                        <ul class="facts"><li>⏱ 50min</li><li>🍰 10 fatias</li><li>Fácil</li></ul>
-                    </div>
-                </article>
-                <article class="rcard">
-                    <div class="thumb" aria-hidden="true">🍊</div>
-                    <div class="rbody">
-                        <h3>Bolo de laranja com casca</h3>
-                        <p>Usa a laranja inteira e rende uma massa perfumada e macia.</p>
-                        <ul class="facts"><li>⏱ 55min</li><li>🍰 12 fatias</li><li>Fácil</li></ul>
-                    </div>
-                </article>
-                <article class="rcard">
-                    <div class="thumb" aria-hidden="true">🍫</div>
-                    <div class="rbody">
-                        <h3>Bolo de chocolate para festa</h3>
-                        <p>Massa firme, boa para rechear e cobrir com brigadeiro.</p>
-                        <ul class="facts"><li>⏱ 1h30</li><li>🍰 16 fatias</li><li>Médio</li></ul>
-                    </div>
-                </article>
+            <h2>Recent posts</h2>
+            <div class="grid">
+                <article class="post"><span class="tag">History</span><h3><a href="#" style="text-decoration:none">The story behind the first international match</a></h3><p>How a simple friendly in the 1870s helped shape the modern sport.</p><span class="meta">6 min read</span></article>
+                <article class="post"><span class="tag">Training</span><h3><a href="#" style="text-decoration:none">Five passing drills for a small garden or park</a></h3><p>Easy exercises to practise control and touch with a ball and a few cones.</p><span class="meta">5 min read</span></article>
+                <article class="post"><span class="tag">Youth football</span><h3><a href="#" style="text-decoration:none">Making Saturday mornings fun for young players</a></h3><p>Ideas for coaches and volunteers who run community sessions.</p><span class="meta">7 min read</span></article>
+                <article class="post"><span class="tag">Equipment</span><h3><a href="#" style="text-decoration:none">What to look for in a first pair of boots</a></h3><p>Fit, surface and comfort explained in simple terms.</p><span class="meta">4 min read</span></article>
+                <article class="post"><span class="tag">Culture</span><h3><a href="#" style="text-decoration:none">Stadium traditions around the world</a></h3><p>Songs, colours and rituals that bring communities together.</p><span class="meta">9 min read</span></article>
+                <article class="post"><span class="tag">Rules</span><h3><a href="#" style="text-decoration:none">The offside law in five minutes</a></h3><p>A clear, illustrated guide to one of the sport’s most discussed rules.</p><span class="meta">5 min read</span></article>
             </div>
         </section>
 
-        <section id="destaque" class="feature" aria-labelledby="h-dest">
-            <h2 id="h-dest">Receita do dia: bolo de cenoura</h2>
-            <p class="sub">Preparo 20 min · Forno 40 min · Rende 12 fatias</p>
-            <div class="cols">
-                <div>
-                    <h3>Massa</h3>
-                    <ul class="ing">
-                        <li><label><input type="checkbox"><span>3 cenouras médias, descascadas e picadas</span></label></li>
-                        <li><label><input type="checkbox"><span>4 ovos</span></label></li>
-                        <li><label><input type="checkbox"><span>1/2 xícara (chá) de óleo</span></label></li>
-                        <li><label><input type="checkbox"><span>2 xícaras (chá) de açúcar</span></label></li>
-                        <li><label><input type="checkbox"><span>2 1/2 xícaras (chá) de farinha de trigo</span></label></li>
-                        <li><label><input type="checkbox"><span>1 colher (sopa) de fermento em pó</span></label></li>
-                    </ul>
-                    <h3>Cobertura</h3>
-                    <ul class="ing">
-                        <li><label><input type="checkbox"><span>1 colher (sopa) de manteiga</span></label></li>
-                        <li><label><input type="checkbox"><span>3 colheres (sopa) de chocolate em pó</span></label></li>
-                        <li><label><input type="checkbox"><span>1 xícara (chá) de açúcar</span></label></li>
-                        <li><label><input type="checkbox"><span>1/2 xícara (chá) de leite</span></label></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3>Modo de preparo</h3>
-                    <ol class="steps">
-                        <li>Preaqueça o forno a 180 °C e unte uma forma de furo central com manteiga e farinha.</li>
-                        <li>No liquidificador, bata as cenouras, os ovos e o óleo até ficar uma mistura lisa.</li>
-                        <li>Em uma tigela, misture o açúcar e a farinha. Despeje o líquido e mexa até incorporar.</li>
-                        <li>Acrescente o fermento por último e misture com delicadeza.</li>
-                        <li>Leve ao forno por cerca de 40 minutos, até o palito sair limpo.</li>
-                        <li>Na cobertura, leve todos os ingredientes ao fogo baixo, mexendo, até ferver. Cozinhe por cerca de 3 minutos e despeje sobre o bolo ainda morno.</li>
-                    </ol>
-                    <div class="tip">Dica: não abra o forno nos primeiros 25 minutos, para o bolo não murchar.</div>
-                </div>
+        <section id="topics" aria-labelledby="t-h">
+            <h2 id="t-h">Browse by topic</h2>
+            <div class="topics">
+                <a href="#">Tactics</a><a href="#">History</a><a href="#">Training</a><a href="#">Youth football</a><a href="#">Women’s football</a><a href="#">Rules explained</a><a href="#">Equipment</a><a href="#">Fan culture</a>
             </div>
         </section>
 
-        <section id="dicas" aria-labelledby="h-dicas">
-            <h2 class="sec" id="h-dicas">Antes de começar</h2>
-            <div class="tips">
-                <div><b>Ingredientes em temperatura ambiente</b>Ovos e manteiga frios dificultam a mistura e deixam a massa menos uniforme.</div>
-                <div><b>Fermento por último</b>Quanto mais cedo ele entra na massa e é mexido, mais perde força antes de ir ao forno.</div>
-                <div><b>Teste do palito</b>Espete o centro do bolo. Se sair com massa crua, devolva ao forno por mais alguns minutos.</div>
-                <div><b>Deixe esfriar um pouco</b>Desenformar o bolo muito quente pode quebrá-lo. Espere uns 10 minutos.</div>
-            </div>
+        <section id="newsletter" class="news" aria-labelledby="n-h">
+            <h2 id="n-h">Get new articles by email</h2>
+            <p>One short email when a new article is published. Unsubscribe at any time.</p>
+            <form id="sub" class="row" novalidate>
+                <input type="email" id="em" placeholder="Email address" aria-label="Email address" autocomplete="email">
+                <button type="submit">Subscribe</button>
+            </form>
+            <p id="msg" class="small" role="status">We use your email only to send the newsletter.</p>
         </section>
     </main>
 
-    <footer id="privacidade">
-        <h4>Privacidade</h4>
-        <p>Esta página não usa cookies, não carrega scripts nem fontes de terceiros e não coleta dados de quem a visita. Os textos e o desenho do bolo são originais, sem fotos ou marcas de terceiros.</p>
-        <p>© Forma Untada. Os tempos de forno variam de acordo com o aparelho: use sempre o teste do palito.</p>
+    <footer id="about">
+        <p><strong>About Touchline Notes.</strong> An independent blog about football, written by volunteers who love the game.</p>
+        <p>This site is not affiliated with any club, league or governing body. All team and competition names belong to their respective owners. Content is for general information and entertainment only.</p>
+        <p>© 2026 Touchline Notes · Privacy · Contact</p>
     </footer>
 </div>
+<script>
+    document.getElementById('sub').addEventListener('submit',function(e){
+        e.preventDefault();
+        var v=document.getElementById('em').value.trim(),m=document.getElementById('msg');
+        if(!/^\S+@\S+\.\S+$/.test(v)){m.textContent='Please enter a valid email address.';return}
+        m.textContent='Thanks. Check your inbox to confirm.';
+        this.reset();
+    });
+</script>
 </body>
 </html>

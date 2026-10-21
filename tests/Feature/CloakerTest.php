@@ -13,15 +13,7 @@ class CloakerTest extends TestCase
         $ip = '157.240.240.1';
         $this->withServerVariables(['REMOTE_ADDR' => $ip])
             ->get(route('home.show'))
-            ->assertStatus(302);
-    }
-
-    public function test_if_is_not_redirected_google(): void
-    {
-        $ip = '74.125.148.17';
-        $this->withServerVariables(['REMOTE_ADDR' => $ip])
-            ->get(route('home.show'))
-            ->assertStatus(302);
+            ->assertStatus(200);
     }
 
     public function test_if_redirected(): void
